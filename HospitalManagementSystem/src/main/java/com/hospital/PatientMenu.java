@@ -42,7 +42,7 @@ public class PatientMenu {
                 case 6:
                     return; // Go back to main menu
                 default:
-                    System.out.println("❌ Invalid option. Try again.");
+                    System.out.println(" Invalid option. Try again.");
             }
         }
     }
@@ -61,9 +61,9 @@ public class PatientMenu {
 
         Patient patient = new Patient(name, age, gender, contact, address);
         if (patientDAO.addPatient(patient)) {
-            System.out.println("✅ Patient registered successfully! Assigned ID: " + patient.getPatientId());
+            System.out.println(" Patient registered successfully! Assigned ID: " + patient.getPatientId());
         } else {
-            System.out.println("❌ Failed to register patient.");
+            System.out.println(" Failed to register patient.");
         }
     }
 
@@ -72,18 +72,18 @@ public class PatientMenu {
         int id = getIntInput();
         Patient p = patientDAO.getPatientById(id);
         if (p != null) {
-            System.out.println("📄 Patient Details: " + p);
+            System.out.println(" Patient Details: " + p);
         } else {
-            System.out.println("❌ Patient not found with ID: " + id);
+            System.out.println(" Patient not found with ID: " + id);
         }
     }
 
     private static void viewAllPatients() {
         List<Patient> patients = patientDAO.getAllPatients();
         if (patients.isEmpty()) {
-            System.out.println("📭 No patients found.");
+            System.out.println(" No patients found.");
         } else {
-            System.out.println("\n📋 All Patients:");
+            System.out.println("\n All Patients:");
             for (Patient p : patients) {
                 System.out.println(p);
             }
@@ -95,7 +95,7 @@ public class PatientMenu {
         int id = getIntInput();
         Patient existing = patientDAO.getPatientById(id);
         if (existing == null) {
-            System.out.println("❌ Patient not found.");
+            System.out.println(" Patient not found.");
             return;
         }
 
@@ -144,7 +144,7 @@ public class PatientMenu {
             if (input.isEmpty()) return 0;
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            System.out.print("⚠️ Invalid number. Enter again: ");
+            System.out.print(" Invalid number. Enter again: ");
             return getIntInput(); // Recursive retry
         }
     }
