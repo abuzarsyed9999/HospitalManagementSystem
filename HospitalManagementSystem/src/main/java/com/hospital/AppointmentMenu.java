@@ -52,7 +52,7 @@ public class AppointmentMenu {
                 case 6:
                     return;
                 default:
-                    System.out.println("❌ Invalid option. Try again.");
+                    System.out.println(" Invalid option. Try again.");
             }
         }
     }
@@ -62,7 +62,7 @@ public class AppointmentMenu {
         System.out.print("Enter Patient ID: ");
         int patientId = getIntInput();
         if (patientDAO.getPatientById(patientId) == null) {
-            System.out.println("❌ Patient not found with ID: " + patientId);
+            System.out.println(" Patient not found with ID: " + patientId);
             return;
         }
 
@@ -70,7 +70,7 @@ public class AppointmentMenu {
         System.out.print("Enter Doctor ID: ");
         int doctorId = getIntInput();
         if (doctorDAO.getDoctorById(doctorId) == null) {
-            System.out.println("❌ Doctor not found with ID: " + doctorId);
+            System.out.println(" Doctor not found with ID: " + doctorId);
             return;
         }
 
@@ -82,7 +82,7 @@ public class AppointmentMenu {
             java.util.Date parsedDate = DATE_FORMAT.parse(dateStr);
             appointmentDate = new Date(parsedDate.getTime());
         } catch (ParseException e) {
-            System.out.println("❌ Invalid date format. Use yyyy-MM-dd (e.g., 2026-03-15)");
+            System.out.println(" Invalid date format. Use yyyy-MM-dd (e.g., 2026-03-15)");
             return;
         }
 
@@ -94,25 +94,25 @@ public class AppointmentMenu {
             java.util.Date parsedTime = TIME_FORMAT.parse(timeStr);
             appointmentTime = new Time(parsedTime.getTime());
         } catch (ParseException e) {
-            System.out.println("❌ Invalid time format. Use HH:mm:ss (e.g., 14:30:00)");
+            System.out.println(" Invalid time format. Use HH:mm:ss (e.g., 14:30:00)");
             return;
         }
 
         // Step 5: Create and save appointment
         Appointment appointment = new Appointment(patientId, doctorId, appointmentDate, appointmentTime);
         if (appointmentDAO.bookAppointment(appointment)) {
-            System.out.println("✅ Appointment booked successfully! ID: " + appointment.getAppointmentId());
+            System.out.println(" Appointment booked successfully! ID: " + appointment.getAppointmentId());
         } else {
-            System.out.println("❌ Failed to book appointment. Check IDs and try again.");
+            System.out.println(" Failed to book appointment. Check IDs and try again.");
         }
     }
 
     private static void viewAllAppointments() {
         List<Appointment> appointments = appointmentDAO.getAllAppointments();
         if (appointments.isEmpty()) {
-            System.out.println("📭 No appointments found.");
+            System.out.println(" No appointments found.");
         } else {
-            System.out.println("\n📋 All Appointments:");
+            System.out.println("\n All Appointments:");
             for (Appointment a : appointments) {
                 System.out.println(a);
             }
@@ -123,14 +123,14 @@ public class AppointmentMenu {
         System.out.print("Enter Patient ID: ");
         int patientId = getIntInput();
         if (patientDAO.getPatientById(patientId) == null) {
-            System.out.println("❌ Patient not found.");
+            System.out.println(" Patient not found.");
             return;
         }
         List<Appointment> appointments = appointmentDAO.getAppointmentsByPatientId(patientId);
         if (appointments.isEmpty()) {
-            System.out.println("📭 No appointments found for this patient.");
+            System.out.println(" No appointments found for this patient.");
         } else {
-            System.out.println("\n📋 Appointments for Patient ID " + patientId + ":");
+            System.out.println("\n Appointments for Patient ID " + patientId + ":");
             for (Appointment a : appointments) {
                 System.out.println(a);
             }
@@ -141,14 +141,14 @@ public class AppointmentMenu {
         System.out.print("Enter Doctor ID: ");
         int doctorId = getIntInput();
         if (doctorDAO.getDoctorById(doctorId) == null) {
-            System.out.println("❌ Doctor not found.");
+            System.out.println(" Doctor not found.");
             return;
         }
         List<Appointment> appointments = appointmentDAO.getAppointmentsByDoctorId(doctorId);
         if (appointments.isEmpty()) {
-            System.out.println("📭 No appointments found for this doctor.");
+            System.out.println(" No appointments found for this doctor.");
         } else {
-            System.out.println("\n📋 Appointments for Doctor ID " + doctorId + ":");
+            System.out.println("\n Appointments for Doctor ID " + doctorId + ":");
             for (Appointment a : appointments) {
                 System.out.println(a);
             }
@@ -160,17 +160,17 @@ public class AppointmentMenu {
         int appointmentId = getIntInput();
         Appointment existing = appointmentDAO.getAppointmentById(appointmentId);
         if (existing == null) {
-            System.out.println("❌ Appointment not found.");
+            System.out.println(" Appointment not found.");
             return;
         }
         if ("Cancelled".equals(existing.getStatus())) {
-            System.out.println("ℹ️ Appointment is already cancelled.");
+            System.out.println(" Appointment is already cancelled.");
             return;
         }
         if (appointmentDAO.cancelAppointment(appointmentId)) {
-            System.out.println("🗑️ Appointment ID " + appointmentId + " has been cancelled.");
+            System.out.println(" Appointment ID " + appointmentId + " has been cancelled.");
         } else {
-            System.out.println("❌ Failed to cancel appointment.");
+            System.out.println(" Failed to cancel appointment.");
         }
     }
 
@@ -180,7 +180,7 @@ public class AppointmentMenu {
             if (input.isEmpty()) return 0;
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            System.out.print("⚠️ Invalid number. Enter again: ");
+            System.out.print(" Invalid number. Enter again: ");
             return getIntInput();
         }
     }
