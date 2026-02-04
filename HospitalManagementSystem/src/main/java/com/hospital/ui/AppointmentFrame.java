@@ -26,7 +26,7 @@ public class AppointmentFrame extends JFrame {
     private DoctorDAO doctorDAO = new DoctorDAO();
 
     public AppointmentFrame() {
-        setTitle("📅 Appointment Management");
+        setTitle(" Appointment Management");
         setSize(950, 650);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
