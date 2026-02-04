@@ -42,7 +42,7 @@ public class DoctorMenu {
                 case 6:
                     return;
                 default:
-                    System.out.println("❌ Invalid option. Try again.");
+                    System.out.println(" Invalid option. Try again.");
             }
         }
     }
@@ -59,9 +59,9 @@ public class DoctorMenu {
 
         Doctor doctor = new Doctor(name, specialization, contact, department);
         if (doctorDAO.addDoctor(doctor)) {
-            System.out.println("✅ Doctor added successfully! Assigned ID: " + doctor.getDoctorId());
+            System.out.println(" Doctor added successfully! Assigned ID: " + doctor.getDoctorId());
         } else {
-            System.out.println("❌ Failed to add doctor.");
+            System.out.println(" Failed to add doctor.");
         }
     }
 
@@ -72,16 +72,16 @@ public class DoctorMenu {
         if (d != null) {
             System.out.println("📄 Doctor Details: " + d);
         } else {
-            System.out.println("❌ Doctor not found with ID: " + id);
+            System.out.println(" Doctor not found with ID: " + id);
         }
     }
 
     private static void viewAllDoctors() {
         List<Doctor> doctors = doctorDAO.getAllDoctors();
         if (doctors.isEmpty()) {
-            System.out.println("📭 No doctors found.");
+            System.out.println(" No doctors found.");
         } else {
-            System.out.println("\n📋 All Doctors:");
+            System.out.println("\n All Doctors:");
             for (Doctor d : doctors) {
                 System.out.println(d);
             }
@@ -93,7 +93,7 @@ public class DoctorMenu {
         int id = getIntInput();
         Doctor existing = doctorDAO.getDoctorById(id);
         if (existing == null) {
-            System.out.println("❌ Doctor not found.");
+            System.out.println(" Doctor not found.");
             return;
         }
 
@@ -115,9 +115,9 @@ public class DoctorMenu {
         if (!department.isEmpty()) existing.setDepartment(department);
 
         if (doctorDAO.updateDoctor(existing)) {
-            System.out.println("✅ Doctor updated successfully!");
+            System.out.println(" Doctor updated successfully!");
         } else {
-            System.out.println("❌ Failed to update doctor.");
+            System.out.println(" Failed to update doctor.");
         }
     }
 
@@ -125,9 +125,9 @@ public class DoctorMenu {
         System.out.print("Enter Doctor ID to delete: ");
         int id = getIntInput();
         if (doctorDAO.deleteDoctor(id)) {
-            System.out.println("🗑️ Doctor deleted successfully!");
+            System.out.println(" Doctor deleted successfully!");
         } else {
-            System.out.println("❌ Failed to delete doctor. ID may not exist.");
+            System.out.println(" Failed to delete doctor. ID may not exist.");
         }
     }
 
@@ -138,7 +138,7 @@ public class DoctorMenu {
             if (input.isEmpty()) return 0;
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            System.out.print("⚠️ Invalid number. Enter again: ");
+            System.out.print(" Invalid number. Enter again: ");
             return getIntInput();
         }
     }
